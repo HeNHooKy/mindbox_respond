@@ -7,14 +7,12 @@ public sealed class Circle : Shape
 {
     private double _radius;
     
-    internal Circle()
-    {
-    }
+    public Circle()
+    { }
 
     public Circle(double radius)
     {
-        _radius = radius;
-        CompleteInitialization();
+        WithRadius(radius);
     }
 
     /// <summary>
@@ -23,6 +21,11 @@ public sealed class Circle : Shape
     /// <param name="radius">Новый радиус круга.</param>
     public void WithRadius(double radius)
     {
+        if (radius <= 0)
+        {
+            throw new ArgumentException("Circle with a radius less or equal to zero cannot exist.");
+        }
+        
         _radius = radius;
         CompleteInitialization();
     }

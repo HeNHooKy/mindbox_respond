@@ -10,7 +10,7 @@ public abstract class Shape : ISquareComputable
     /// </summary>
     private bool _initialized = false;
     
-    internal Shape() { }
+    public Shape() { }
 
     /// <inheritdoc />
     /// <exception cref="ApplicationException">Фигура не проинициализирована (Одна из базовых характеристик фигуры не задана).</exception>

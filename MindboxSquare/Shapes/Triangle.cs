@@ -12,7 +12,7 @@ public sealed class Triangle : Shape
     private int _bSide;
     private int _cSide;
 
-    internal Triangle()
+    public Triangle()
     { }
 
     /// <param name="aSide">Первая сторона.</param>
@@ -20,11 +20,7 @@ public sealed class Triangle : Shape
     /// <param name="cSide">Третья сторона.</param>
     public Triangle(int aSide, int bSide, int cSide)
     {
-        _aSide = aSide;
-        _bSide = bSide;
-        _cSide = cSide;
-        
-        CompleteInitialization();
+        WithSides(aSide, bSide, cSide);
     }
 
     /// <summary>
@@ -35,6 +31,18 @@ public sealed class Triangle : Shape
     /// <param name="cSide">Третья сторона.</param>
     public void WithSides(int aSide, int bSide, int cSide)
     {
+        if(aSide <= 0 || bSide <= 0 || cSide <= 0)
+        {
+            throw new ArgumentException("Length of any side can't be negative or equal to zero.");
+        }
+        
+        if((aSide + bSide > cSide 
+            && bSide + cSide > aSide
+            && aSide + cSide > bSide) is false)
+        {
+            throw new ArgumentException("Triangle cannot exist.");
+        }
+        
         _aSide = aSide;
         _bSide = bSide;
         _cSide = cSide;
